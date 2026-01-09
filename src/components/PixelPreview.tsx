@@ -25,12 +25,6 @@ export default function PixelPreview({
     large: 'w-32 h-32',
   };
   
-  const cellSizes = {
-    small: 'w-[10%] h-[10%]',
-    medium: 'w-[10%] h-[10%]',
-    large: 'w-[10%] h-[10%]',
-  };
-  
   return (
     <div className={`flex flex-col items-center gap-2 ${className}`}>
       <div

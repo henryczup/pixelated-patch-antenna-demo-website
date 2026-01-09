@@ -53,7 +53,7 @@ export default function InfoPanel({
       >
         <span className="text-lg">💡</span>
         <span className="text-sm text-gray-400">
-          {isExpanded ? 'Hide Info' : 'What\'s happening?'}
+          {isExpanded ? 'Hide Info' : 'What&apos;s happening?'}
         </span>
         <motion.span
           animate={{ rotate: isExpanded ? 180 : 0 }}

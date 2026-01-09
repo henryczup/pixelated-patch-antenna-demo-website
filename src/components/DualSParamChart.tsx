@@ -132,7 +132,7 @@ function SingleChart({
                 fontSize: '12px',
               }}
               labelFormatter={(v) => `${Number(v).toFixed(2)} GHz`}
-              formatter={(v: number) => [`${v.toFixed(1)} dB`, 'S11']}
+              formatter={(v) => [`${Number(v).toFixed(1)} dB`, 'S11']}
             />
             
             <Line

@@ -162,7 +162,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
                 Engineer designs antenna shape → Simulate to find resonance frequency
               </p>
               <p className="text-gray-500 text-xs mt-1 italic">
-                "I made this shape, what frequency does it resonate at?"
+                &ldquo;I made this shape, what frequency does it resonate at?&rdquo;
               </p>
             </div>
             
@@ -172,7 +172,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
                 Specify target frequency → Algorithm discovers optimal shape
               </p>
               <p className="text-gray-500 text-xs mt-1 italic">
-                "I need 2.16 GHz — what shape achieves this?"
+                &ldquo;I need 2.16 GHz — what shape achieves this?&rdquo;
               </p>
             </div>
           </div>
@@ -228,7 +228,7 @@ function LandingPage({ onStart }: { onStart: () => void }) {
         
         <p className="text-gray-400 mb-4">
           A 10×10 pixel grid has <span className="font-mono text-cyan-400">2<sup>100</sup></span> ≈ <span className="font-mono text-cyan-400">1.27 × 10<sup>30</sup></span> possible 
-          configurations — that's over a <em>nonillion</em> combinations! 
+          configurations — that&apos;s over a <em>nonillion</em> combinations! 
           Even a supercomputer checking 1 trillion configs/second would need 
           <span className="font-mono text-yellow-400"> ~40 billion years</span> to search them all.
         </p>

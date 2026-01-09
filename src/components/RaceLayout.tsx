@@ -2,14 +2,13 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import RaceControls from './RaceControls';
 import DualSParamChart from './DualSParamChart';
 import WinnerReveal from './WinnerReveal';
 import InfoPanel from './InfoPanel';
 import { PixelTooltip } from './PixelPreview';
 import { useRace } from '@/hooks/useRace';
-import { designCards } from '@/lib/designCards';
 
 // Dynamic import for Three.js component (no SSR)
 const LossLandscape = dynamic(() => import('./LossLandscape'), {
@@ -37,7 +36,6 @@ export default function RaceLayout({ userPickId, onPlayAgain }: RaceLayoutProps)
     totalGenerations,
     designs,
     trails,
-    isComplete,
     getBestDesign,
     getDesignById,
     getDesignCardById,

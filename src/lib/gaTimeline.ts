@@ -1,4 +1,4 @@
-import { GAGeneration, DesignState, SParameterCurve } from '@/types/antenna';
+import { GAGeneration, DesignState } from '@/types/antenna';
 import { designCards } from './designCards';
 import { lossLandscape, getHeightAt } from './lossLandscapeData';
 import { generateS11ForFitness, getResonanceFromFitness } from './sParameterData';
@@ -27,24 +27,6 @@ const targetPositions: { [key: string]: { x: number; y: number } } = {
   'design-delta': { x: 25, y: 25 },   // Broad local optimum
   'design-epsilon': { x: 10, y: 15 }, // Local optimum
   'design-zeta': { x: 33, y: 33 },    // Near global optimum (2nd place)
-};
-
-// Interpolate pixel grid between generations (simulate evolution)
-const interpolatePixelGrid = (
-  startGrid: number[][],
-  targetGrid: number[][],
-  progress: number
-): number[][] => {
-  return startGrid.map((row, i) =>
-    row.map((cell, j) => {
-      // Randomly flip some cells based on progress
-      const shouldChange = Math.random() < progress * 0.1;
-      if (shouldChange) {
-        return targetGrid[i][j];
-      }
-      return cell;
-    })
-  );
 };
 
 // Generate evolved pixel grid (simulating GA mutations)

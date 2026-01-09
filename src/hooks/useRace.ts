@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { DesignState } from '@/types/antenna';
-import { gaTimeline, getGeneration, getTotalGenerations, getWinnerDesignId, getFinalRankings } from '@/lib/gaTimeline';
+import { getGeneration, getTotalGenerations, getWinnerDesignId, getFinalRankings } from '@/lib/gaTimeline';
 import { designCards } from '@/lib/designCards';
 
 interface UseRaceOptions {
@@ -25,7 +25,7 @@ export function useRace({
   const [currentGeneration, setCurrentGeneration] = useState(0);
   const [designs, setDesigns] = useState<DesignState[]>([]);
   const [trails, setTrails] = useState<TrailData>({});
-  const [isComplete, setIsComplete] = useState(false);
+  const [raceComplete, setRaceComplete] = useState(false);
   
   const totalGenerations = getTotalGenerations();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -45,13 +45,13 @@ export function useRace({
   
   // Animation loop
   useEffect(() => {
-    if (isPlaying && !isComplete) {
+    if (isPlaying && !raceComplete) {
       intervalRef.current = setInterval(() => {
         setCurrentGeneration(prev => {
           const next = prev + 1;
           
           if (next > totalGenerations) {
-            setIsComplete(true);
+            setRaceComplete(true);
             onRaceComplete?.();
             return prev;
           }
@@ -83,7 +83,7 @@ export function useRace({
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, isComplete, speed, totalGenerations, onGenerationChange, onRaceComplete]);
+  }, [isPlaying, raceComplete, speed, totalGenerations, onGenerationChange, onRaceComplete]);
   
   // Get current best design
   const getBestDesign = useCallback(() => {
@@ -106,7 +106,7 @@ export function useRace({
   // Reset race
   const resetRace = useCallback(() => {
     setCurrentGeneration(0);
-    setIsComplete(false);
+    setRaceComplete(false);
     
     const gen = getGeneration(0);
     setDesigns(gen.designs);
@@ -120,12 +120,12 @@ export function useRace({
   
   // Get winner info
   const getWinner = useCallback(() => {
-    if (!isComplete) return null;
+    if (!raceComplete) return null;
     const winnerId = getWinnerDesignId();
     const winnerDesign = getDesignById(winnerId);
     const winnerCard = getDesignCardById(winnerId);
     return { design: winnerDesign, card: winnerCard };
-  }, [isComplete, getDesignById, getDesignCardById]);
+  }, [raceComplete, getDesignById, getDesignCardById]);
   
   // Get final rankings
   const getRankings = useCallback(() => {
@@ -144,7 +144,7 @@ export function useRace({
     totalGenerations,
     designs,
     trails,
-    isComplete,
+    isComplete: raceComplete,
     getBestDesign,
     getDesignById,
     getDesignCardById,

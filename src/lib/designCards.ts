@@ -3,31 +3,6 @@ import { DesignCard } from '@/types/antenna';
 // Predefined antenna designs (placeholder data - will be replaced with real GA run data)
 // Each design represents a different starting configuration in the GA population
 
-const createRandomGrid = (seed: number): number[][] => {
-  // Simple seeded random for reproducible patterns
-  const random = (s: number) => {
-    const x = Math.sin(s) * 10000;
-    return x - Math.floor(x);
-  };
-  
-  const grid: number[][] = [];
-  for (let i = 0; i < 10; i++) {
-    const row: number[] = [];
-    for (let j = 0; j < 10; j++) {
-      // Create interesting patterns, not just random noise
-      const val = random(seed + i * 10 + j);
-      // Keep feed connection area (columns 4-5, row 0) always on
-      if (i === 0 && (j === 4 || j === 5)) {
-        row.push(1);
-      } else {
-        row.push(val > 0.4 ? 1 : 0);
-      }
-    }
-    grid.push(row);
-  }
-  return grid;
-};
-
 // Create distinct visual patterns for each design
 const patterns: { [key: string]: number[][] } = {
   alpha: [
