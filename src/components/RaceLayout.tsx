@@ -9,7 +9,6 @@ import WinnerReveal from './WinnerReveal';
 import InfoPanel from './InfoPanel';
 import { PixelTooltip } from './PixelPreview';
 import { useRace } from '@/hooks/useRace';
-import { designCards } from '@/lib/designCards';
 
 // Dynamic import for Three.js component (no SSR)
 const LossLandscape = dynamic(() => import('./LossLandscape'), {
