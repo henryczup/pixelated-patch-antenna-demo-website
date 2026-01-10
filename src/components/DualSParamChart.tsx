@@ -42,16 +42,16 @@ function SingleChart({
       s11: sParams.s11[i],
     }));
   }, [sParams]);
-  
+
   // Find the minimum S11 value (resonance dip)
   const minS11 = Math.min(...sParams.s11);
-  
+
   return (
     <div className="chart-container h-full flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-start mb-2">
         <div>
-          <h3 className="text-sm font-bold" style={{ color }}>
+          <h3 className="text-sm font-semibold" style={{ color }}>
             {title}
           </h3>
           {subtitle && (
@@ -60,81 +60,81 @@ function SingleChart({
         </div>
         <div className="text-right">
           <div className="text-xs text-gray-400">Resonance</div>
-          <div className="text-sm font-mono font-bold" style={{ color }}>
+          <div className="text-sm font-mono font-semibold" style={{ color }}>
             {resonance.toFixed(2)} GHz
           </div>
         </div>
       </div>
-      
+
       {/* Chart */}
       <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="rgba(100, 100, 150, 0.2)"
+              stroke="rgba(100, 110, 125, 0.15)"
               vertical={false}
             />
-            
+
             <XAxis
               dataKey="frequency"
               type="number"
               domain={[1.5, 5.5]}
               tickCount={5}
-              tick={{ fill: '#666', fontSize: 10 }}
-              axisLine={{ stroke: '#444' }}
-              tickLine={{ stroke: '#444' }}
+              tick={{ fill: '#6b7280', fontSize: 10 }}
+              axisLine={{ stroke: '#4b5563' }}
+              tickLine={{ stroke: '#4b5563' }}
               tickFormatter={(v) => `${v.toFixed(1)}`}
             />
-            
+
             <YAxis
               domain={[-35, 0]}
               tickCount={4}
-              tick={{ fill: '#666', fontSize: 10 }}
-              axisLine={{ stroke: '#444' }}
-              tickLine={{ stroke: '#444' }}
+              tick={{ fill: '#6b7280', fontSize: 10 }}
+              axisLine={{ stroke: '#4b5563' }}
+              tickLine={{ stroke: '#4b5563' }}
               tickFormatter={(v) => `${v}`}
             />
-            
+
             {/* Target frequency reference line */}
             <ReferenceLine
               x={targetFreq}
-              stroke="#00ff88"
+              stroke="#5bb98b"
               strokeDasharray="5 5"
               strokeWidth={1}
               label={{
                 value: 'Target',
                 position: 'top',
-                fill: '#00ff88',
+                fill: '#5bb98b',
                 fontSize: 9,
               }}
             />
-            
+
             {/* -10 dB reference line (common matching threshold) */}
             <ReferenceLine
               y={-10}
-              stroke="#ff6600"
+              stroke="#d47a4b"
               strokeDasharray="3 3"
               strokeWidth={1}
               label={{
                 value: '-10dB',
                 position: 'right',
-                fill: '#ff6600',
+                fill: '#d47a4b',
                 fontSize: 9,
               }}
             />
-            
+
             <Tooltip
               contentStyle={{
-                background: 'rgba(10, 10, 20, 0.9)',
-                border: '1px solid rgba(100, 100, 150, 0.3)',
-                borderRadius: '8px',
+                background: 'rgba(15, 20, 25, 0.95)',
+                border: '1px solid rgba(100, 110, 125, 0.3)',
+                borderRadius: '6px',
                 fontSize: '12px',
               }}
               labelFormatter={(v) => `${Number(v).toFixed(2)} GHz`}
               formatter={(v) => [`${Number(v).toFixed(1)} dB`, 'S11']}
             />
-            
+
             <Line
               type="monotone"
               dataKey="s11"
@@ -146,11 +146,11 @@ function SingleChart({
           </LineChart>
         </ResponsiveContainer>
       </div>
-      
+
       {/* Stats footer */}
-      <div className="flex justify-between text-xs text-gray-500 mt-2 pt-2 border-t border-gray-800">
+      <div className="flex justify-between text-xs text-gray-500 mt-2 pt-2 border-t border-gray-700">
         <span>Min S11: <span className="font-mono" style={{ color }}>{minS11.toFixed(1)} dB</span></span>
-        <span>Target: <span className="font-mono text-green-400">{targetFreq} GHz</span></span>
+        <span>Target: <span className="font-mono" style={{ color: '#5bb98b' }}>{targetFreq} GHz</span></span>
       </div>
     </div>
   );
@@ -178,9 +178,9 @@ export default function DualSParamChart({
   return (
     <motion.div
       className="grid grid-cols-2 gap-4 h-full p-4"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       {/* User's design chart */}
       <div className="h-full">
@@ -198,7 +198,7 @@ export default function DualSParamChart({
           </div>
         )}
       </div>
-      
+
       {/* Best design chart */}
       <div className="h-full">
         {bestDesign ? (

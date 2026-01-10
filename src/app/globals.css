@@ -3,37 +3,37 @@
 @tailwind utilities;
 
 :root {
-  /* Dark RF-themed color palette */
-  --background: #0a0a0f;
-  --background-secondary: #12121a;
-  --foreground: #e0e0e8;
-  --foreground-muted: #8888a0;
-  
-  /* Accent colors - RF/tech aesthetic */
-  --accent-cyan: #00ffff;
-  --accent-magenta: #ff00ff;
-  --accent-yellow: #ffff00;
-  --accent-green: #00ff88;
-  --accent-orange: #ff6600;
-  --accent-pink: #ff0066;
-  
-  /* Copper/PCB colors */
+  /* Professional dark color palette */
+  --background: #0f1419;
+  --background-secondary: #1a2028;
+  --foreground: #e8eaed;
+  --foreground-muted: #9aa0a6;
+
+  /* Professional accent colors - more muted */
+  --accent-cyan: #4db8c7;
+  --accent-magenta: #b86fc4;
+  --accent-yellow: #d4a84b;
+  --accent-green: #5bb98b;
+  --accent-orange: #d47a4b;
+  --accent-pink: #c75b7a;
+
+  /* Copper/PCB colors - unchanged, these are realistic */
   --copper: #b87333;
-  --copper-bright: #da8a47;
+  --copper-bright: #c9884a;
   --fr4-green: #1a5c1a;
   --substrate: rgba(26, 92, 26, 0.6);
-  
+
   /* Chart colors */
-  --chart-line: #00ffff;
-  --chart-grid: #2a2a3a;
-  --chart-axis: #4a4a5a;
-  
+  --chart-line: #4db8c7;
+  --chart-grid: #2a3038;
+  --chart-axis: #4a5058;
+
   /* UI elements */
-  --card-bg: rgba(20, 20, 30, 0.8);
-  --card-border: rgba(100, 100, 150, 0.3);
-  --button-bg: rgba(0, 255, 255, 0.1);
-  --button-border: rgba(0, 255, 255, 0.5);
-  --button-hover: rgba(0, 255, 255, 0.2);
+  --card-bg: rgba(26, 32, 40, 0.9);
+  --card-border: rgba(100, 110, 125, 0.3);
+  --button-bg: rgba(77, 184, 199, 0.1);
+  --button-border: rgba(77, 184, 199, 0.4);
+  --button-hover: rgba(77, 184, 199, 0.15);
 }
 
 * {
@@ -72,29 +72,12 @@ body {
   background: var(--foreground-muted);
 }
 
-/* Grid background pattern */
+/* Subtle grid background pattern */
 .grid-bg {
-  background-image: 
-    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(77, 184, 199, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 184, 199, 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
-}
-
-/* Glow effects */
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.1);
-}
-
-.glow-magenta {
-  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3), 0 0 40px rgba(255, 0, 255, 0.1);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
-}
-
-.text-glow-magenta {
-  text-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);
 }
 
 /* Card styling */
@@ -102,12 +85,11 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   backdrop-filter: blur(10px);
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .tech-card:hover {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+  border-color: rgba(77, 184, 199, 0.5);
 }
 
 /* Button styling */
@@ -116,7 +98,7 @@ body {
   border: 1px solid var(--button-border);
   color: var(--accent-cyan);
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -124,55 +106,16 @@ body {
 
 .tech-button:hover {
   background: var(--button-hover);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
 }
 
 .tech-button:active {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 /* Monospace for technical data */
 .mono {
   font-family: var(--font-geist-mono), 'Courier New', monospace;
-}
-
-/* Animation keyframes */
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 1;
-    filter: brightness(1);
-  }
-  50% {
-    opacity: 0.8;
-    filter: brightness(1.2);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes scan-line {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
 }
 
 /* Pixel grid styling */
@@ -188,34 +131,21 @@ body {
 .pixel-cell {
   aspect-ratio: 1;
   border-radius: 1px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .pixel-on {
   background: var(--copper-bright);
-  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .pixel-off {
-  background: rgba(30, 30, 40, 0.8);
+  background: rgba(30, 35, 42, 0.8);
 }
 
 /* Chart container */
 .chart-container {
   background: var(--background-secondary);
   border: 1px solid var(--chart-grid);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 16px;
-}
-
-/* Confetti animation for winner */
-@keyframes confetti-fall {
-  0% {
-    transform: translateY(-100vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
 }

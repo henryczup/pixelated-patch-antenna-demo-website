@@ -84,37 +84,37 @@ export const designCards: DesignCard[] = [
     id: 'design-alpha',
     name: 'Alpha',
     pixelGrid: patterns.alpha,
-    color: '#00ffff', // Cyan
+    color: '#4db8c7', // Muted cyan
   },
   {
     id: 'design-beta',
     name: 'Beta',
     pixelGrid: patterns.beta,
-    color: '#ff00ff', // Magenta
+    color: '#b86fc4', // Muted magenta
   },
   {
     id: 'design-gamma',
     name: 'Gamma',
     pixelGrid: patterns.gamma,
-    color: '#ffff00', // Yellow
+    color: '#d4a84b', // Muted yellow/gold
   },
   {
     id: 'design-delta',
     name: 'Delta',
     pixelGrid: patterns.delta,
-    color: '#00ff00', // Green
+    color: '#5bb98b', // Muted green
   },
   {
     id: 'design-epsilon',
     name: 'Epsilon',
     pixelGrid: patterns.epsilon,
-    color: '#ff6600', // Orange
+    color: '#d47a4b', // Muted orange
   },
   {
     id: 'design-zeta',
     name: 'Zeta',
     pixelGrid: patterns.zeta,
-    color: '#ff0066', // Pink
+    color: '#c75b7a', // Muted pink
   },
 ];
 
