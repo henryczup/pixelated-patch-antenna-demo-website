@@ -25,11 +25,11 @@ export default function RaceControls({
   const userCard = designCards.find(c => c.id === userPickId);
   const bestCard = designCards.find(c => c.id === bestDesignId);
   const progress = (generation / totalGenerations) * 100;
-  
+
   return (
     <motion.div
       className="absolute top-4 left-4 right-4 flex items-center justify-between z-10"
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
@@ -37,22 +37,22 @@ export default function RaceControls({
       <div className="tech-card px-4 py-2 flex items-center gap-4">
         <div className="flex items-center gap-2">
           <span className="text-gray-400 text-sm">Gen:</span>
-          <span className="font-mono text-xl text-cyan-400 font-bold">
+          <span className="font-mono text-xl font-semibold" style={{ color: '#4db8c7' }}>
             {generation}
           </span>
           <span className="text-gray-500 text-sm">/ {totalGenerations}</span>
         </div>
-        
+
         {/* Progress bar */}
         <div className="w-32 h-2 bg-gray-800 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-cyan-500 to-magenta-500"
-            style={{ width: `${progress}%` }}
+            className="h-full"
+            style={{ background: 'linear-gradient(90deg, #4db8c7, #b86fc4)', width: `${progress}%` }}
             transition={{ duration: 0.2 }}
           />
         </div>
       </div>
-      
+
       {/* Center: Controls */}
       <div className="flex items-center gap-2">
         <button
@@ -75,7 +75,7 @@ export default function RaceControls({
             </>
           )}
         </button>
-        
+
         <button
           onClick={onRestart}
           className="tech-button px-4 py-2 flex items-center gap-2"
@@ -86,26 +86,26 @@ export default function RaceControls({
           Restart
         </button>
       </div>
-      
+
       {/* Right: Design info */}
       <div className="tech-card px-4 py-2 flex items-center gap-6">
         {/* User's pick */}
         {userCard && (
           <div className="flex items-center gap-2">
             <div
-              className="w-3 h-3 rounded-full ring-2 ring-white"
+              className="w-3 h-3 rounded-full ring-2 ring-white/70"
               style={{ background: userCard.color }}
             />
             <span className="text-sm text-gray-400">Your Pick:</span>
-            <span className="font-bold" style={{ color: userCard.color }}>
+            <span className="font-semibold" style={{ color: userCard.color }}>
               {userCard.name}
             </span>
           </div>
         )}
-        
+
         {/* Divider */}
         <div className="w-px h-6 bg-gray-700" />
-        
+
         {/* Current leader */}
         {bestCard && (
           <div className="flex items-center gap-2">
@@ -114,7 +114,7 @@ export default function RaceControls({
               style={{ background: bestCard.color }}
             />
             <span className="text-sm text-gray-400">Leader:</span>
-            <span className="font-bold" style={{ color: bestCard.color }}>
+            <span className="font-semibold" style={{ color: bestCard.color }}>
               {bestCard.name}
             </span>
           </div>

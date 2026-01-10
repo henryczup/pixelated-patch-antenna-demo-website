@@ -12,30 +12,16 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         cyan: {
-          400: '#00ffff',
-          500: '#00cccc',
+          400: '#4db8c7',
+          500: '#3d9aa8',
         },
         magenta: {
-          400: '#ff00ff',
-          500: '#cc00cc',
+          400: '#b86fc4',
+          500: '#9a5aa5',
         },
         copper: {
           DEFAULT: '#b87333',
-          bright: '#da8a47',
-        },
-      },
-      animation: {
-        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-        'float': 'float 3s ease-in-out infinite',
-      },
-      keyframes: {
-        'pulse-glow': {
-          '0%, 100%': { opacity: '1', filter: 'brightness(1)' },
-          '50%': { opacity: '0.8', filter: 'brightness(1.2)' },
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          bright: '#c9884a',
         },
       },
     },

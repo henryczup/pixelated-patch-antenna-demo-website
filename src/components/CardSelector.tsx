@@ -22,11 +22,11 @@ export default function CardSelector({
       {/* Header */}
       <motion.div
         className="text-center"
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.4 }}
       >
-        <h2 className="text-3xl font-bold text-glow-cyan mb-2">
+        <h2 className="text-3xl font-bold mb-2" style={{ color: '#4db8c7' }}>
           Choose Your Design
         </h2>
         <p className="text-gray-400 max-w-md">
@@ -34,20 +34,20 @@ export default function CardSelector({
           as the genetic algorithm optimizes toward the best configuration.
         </p>
       </motion.div>
-      
+
       {/* Cards grid */}
       <motion.div
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
       >
         {designCards.map((design, index) => (
           <motion.div
             key={design.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 * index }}
+            transition={{ duration: 0.3, delay: 0.05 * index }}
           >
             <DesignCard
               design={design}
@@ -58,12 +58,12 @@ export default function CardSelector({
           </motion.div>
         ))}
       </motion.div>
-      
+
       {/* Confirm button */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: selectedId ? 1 : 0.5, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.5 }}
+        transition={{ duration: 0.3, delay: 0.3 }}
       >
         <button
           onClick={onConfirm}
@@ -73,10 +73,10 @@ export default function CardSelector({
             ${!selectedId ? 'opacity-50 cursor-not-allowed' : ''}
           `}
         >
-          {selectedId ? 'Start Race!' : 'Select a Design'}
+          {selectedId ? 'Start Race' : 'Select a Design'}
         </button>
       </motion.div>
-      
+
       {/* Selected design info */}
       {selectedId && (
         <motion.div
@@ -86,12 +86,11 @@ export default function CardSelector({
         >
           You selected{' '}
           <span
-            className="font-bold"
+            className="font-semibold"
             style={{ color: designCards.find(d => d.id === selectedId)?.color }}
           >
             {designCards.find(d => d.id === selectedId)?.name}
           </span>
-          . Good luck!
         </motion.div>
       )}
     </div>

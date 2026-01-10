@@ -24,52 +24,45 @@ export default function PixelPreview({
     medium: 'w-24 h-24',
     large: 'w-32 h-32',
   };
-  
+
   return (
     <div className={`flex flex-col items-center gap-2 ${className}`}>
       <div
-        className={`${sizeClasses[size]} relative rounded-lg overflow-hidden`}
+        className={`${sizeClasses[size]} relative rounded-md overflow-hidden`}
         style={{
-          background: 'linear-gradient(135deg, #1a5c1a 0%, #0d2e0d 100%)',
-          boxShadow: `0 0 20px ${color}33`,
+          background: '#1a4a1a',
         }}
       >
-        {/* Substrate background */}
-        <div className="absolute inset-0 opacity-50" style={{
+        {/* Subtle substrate texture */}
+        <div className="absolute inset-0 opacity-30" style={{
           background: 'repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)',
         }} />
-        
+
         {/* Pixel grid */}
         <div className="absolute inset-1 grid grid-cols-10 grid-rows-10 gap-[1px]">
           {pixelGrid.flat().map((cell, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.005, duration: 0.2 }}
-              className={`rounded-[1px] ${cell === 1 ? 'shadow-sm' : ''}`}
+              className="rounded-[1px]"
               style={{
-                background: cell === 1
-                  ? `linear-gradient(135deg, ${color} 0%, ${adjustColor(color, -30)} 100%)`
-                  : 'rgba(10, 10, 15, 0.6)',
-                boxShadow: cell === 1 ? `inset 0 1px 2px rgba(255,255,255,0.3)` : 'none',
+                background: cell === 1 ? color : 'rgba(15, 20, 25, 0.7)',
               }}
             />
           ))}
         </div>
-        
+
         {/* Feed strip indicator (bottom center) */}
         <div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[15%] h-[8%] rounded-t-sm"
           style={{
-            background: `linear-gradient(to top, ${color}, ${adjustColor(color, 20)})`,
+            background: color,
           }}
         />
       </div>
-      
+
       {showLabel && label && (
         <span
-          className="text-xs font-mono font-bold tracking-wider"
+          className="text-xs font-mono font-medium tracking-wider"
           style={{ color }}
         >
           {label}
@@ -77,15 +70,6 @@ export default function PixelPreview({
       )}
     </div>
   );
-}
-
-// Helper to adjust color brightness
-function adjustColor(color: string, amount: number): string {
-  const hex = color.replace('#', '');
-  const r = Math.max(0, Math.min(255, parseInt(hex.slice(0, 2), 16) + amount));
-  const g = Math.max(0, Math.min(255, parseInt(hex.slice(2, 4), 16) + amount));
-  const b = Math.max(0, Math.min(255, parseInt(hex.slice(4, 6), 16) + amount));
-  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
 // Floating tooltip version for hover preview
@@ -108,9 +92,10 @@ export function PixelTooltip({
 }: PixelTooltipProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.8, y: 10 }}
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 5 }}
+      transition={{ duration: 0.15 }}
       className="fixed z-50 pointer-events-none"
       style={{
         left: position.x,
@@ -121,7 +106,7 @@ export function PixelTooltip({
       <div className="tech-card p-3 flex flex-col items-center gap-2">
         <PixelPreview pixelGrid={pixelGrid} size="small" color={color} />
         <div className="text-center">
-          <div className="font-bold text-sm" style={{ color }}>
+          <div className="font-semibold text-sm" style={{ color }}>
             {designName}
           </div>
           <div className="text-xs text-gray-400 mono">
